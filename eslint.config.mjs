@@ -13,13 +13,19 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
+    parserOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+    },
     rules: {
-      "react/no-unescaped-entities": "off",
-      "@typescript-eslint/quotes": "off",
-      quotes: ["off"],
-      avoidEscape: 0,
-      allowTemplateLiterals: 0,
-      "no-useless-escape": 0,
+      "react/no-unescaped-entities": "off", // Disables warnings for unescaped entities
+      "@typescript-eslint/quotes": "off", // Disables the quotes rule for TypeScript
+      quotes: [
+        "off",
+        "double",
+        { avoidEscape: true, allowTemplateLiterals: true },
+      ], // Ensures valid usage
+      "no-useless-escape": "off", // Disables errors for unnecessary escape sequences
     },
   },
 ];
